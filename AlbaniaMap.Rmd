@@ -1,0 +1,36 @@
+---
+title: "Plotly Project"
+author: "Endri Raco"
+date: "4/14/2020"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(plotly)
+library(sf)
+```
+
+## Intro
+
+We will present Albania map with **plotly**  using .shp files of 61 municipalities
+
+## Map of Albania
+
+```{r, warning=FALSE,error=FALSE, message=FALSE}
+albania <- read_sf(dsn = "./shapes", layer = "Bashkite_61")
+plot_ly(stroke = I("black"), span = I(1)) %>% 
+  add_sf(
+    data = albania, 
+    color = ~region,
+    split = ~siperfaqja, 
+    hoverinfo = "text", 
+    hoveron = "fills"
+  ) %>%
+  layout(showlegend = FALSE)
+```
+
+
+## Thank You
+
+<h1>THANK YOU </h1>
